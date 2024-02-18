@@ -1,0 +1,56 @@
+version: '3.9'
+
+volumes:
+  pg:
+    driver: local
+  app:
+    driver: local
+
+services:
+  db:
+    image: postgres:16-alpine
+    volumes:
+      - pg:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    ports:
+      - "5432:5432"
+
+  app:
+    restart: unless-stopped
+    build:
+      context: ./utsafe-app
+      target: web
+    working_dir: /home/node
+    volumes:
+      - ./utsafe-app/src:/home/node/src
+    environment:
+      - API_URL=http://api:3000
+    ports:
+      - "9000:3000"
+    command: [sh, -c, "NODE_ENV=development pnpm run dev"]
+
+  api:
+    restart: unless-stopped
+    build:
+      context: ./utsafe-api
+      target: 'web'
+    working_dir: /home/node
+    environment:
+      - PORT=3000
+      - DATABASE_URL=postgres://postgres:postgres@db/postgres?currentSchema=postgres
+      - RATE_SERVICE_URL=http://mockapi:3000/rate
+    ports:
+      - "3000:3000"
+    command: ["dumb-init", "node", "dist/index.js"]
+
+  mockapi:
+    build:
+      context: ./utsafe-mock-svc
+      target: 'web'
+    working_dir: /home/node
+    environment:
+      - PORT=3000
+    ports:
+      - "4000:3000"

@@ -83,5 +83,5 @@ Running on http://localhost:9000
 
 #### Environment Variables
 > Automatically set in docker-compose.yml, but may need to be set if run on bare metal
-- API_URL=http://api:3000
+- PROXY_API_URL=http://api:3000
 

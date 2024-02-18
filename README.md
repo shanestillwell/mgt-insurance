@@ -16,7 +16,7 @@
 git clone git@github.com:shanestillwell/mgt-insurance.git
 ```
 
-## Run vi Docker Compose
+## Run via Docker Compose
 ``` 
 cd mgt-insurance;
 ```

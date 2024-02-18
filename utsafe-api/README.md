@@ -1,7 +1,9 @@
-# Awesome Project Build with TypeORM
+# UTSafe Insurance
 
 Steps to run this project:
 
-1. Run `npm i` command
-2. Setup database settings inside `data-source.ts` file
-3. Run `npm start` command
+1. Run `pnpm i` command
+2. Export environment variables
+    1. DATABASE_URL
+    2. RATE_SERVICE_URL
+3. Run `pnpm start` command

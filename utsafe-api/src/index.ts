@@ -3,6 +3,7 @@ import { AppDataSource } from "./data-source"
 import App from './app'
 
 let server: Server
+const PORT = process.env.PORT || 3000
 
 // Initiali the db and typeorm before starting the express server
 AppDataSource
@@ -10,7 +11,7 @@ AppDataSource
   .then(() => {
     console.log("Data Source has been initialized!")
     // start express server
-    server = App.listen(3000)
+    server = App.listen(PORT)
   })
   .catch((err) => {
     console.error("Error during Data Source initialization:", err)

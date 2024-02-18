@@ -1,5 +1,4 @@
-import * as express from "express"
-import { Request, Response } from "express"
+import express, { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
 import Quote from './service/Quote'
 import Rate from './service/Rate'

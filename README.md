@@ -10,6 +10,12 @@
     * pnpm installs packages dramatically faster than npm and yarn
     * `npm install -g pnpm` or `curl -fsSL https://get.pnpm.io/install.sh | sh -`
 
+## TODO
+
+* [] Unit Tests with Jest
+* [] Contract / Integration Tests with Jest
+* [] Rate throttling of call to the Mock Rate API service
+
 ## Install
 
 ```
@@ -78,3 +84,4 @@ Running on http://localhost:9000
 #### Environment Variables
 > Automatically set in docker-compose.yml, but may need to be set if run on bare metal
 - API_URL=http://api:3000
+

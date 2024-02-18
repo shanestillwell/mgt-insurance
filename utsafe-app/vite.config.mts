@@ -8,6 +8,8 @@ import ViteFonts from 'unplugin-fonts/vite'
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 
+const PROXY_API_URL = process.env.PROXY_API_URL || 'http://localhost:3000'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -44,5 +46,12 @@ export default defineConfig({
   server: {
     port: 3000,
     host: true,
+    proxy: {
+      '^/api': {
+        target: PROXY_API_URL,
+        // changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 })
